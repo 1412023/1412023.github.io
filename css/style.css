@@ -2159,3 +2159,35 @@ footer{
 	text-align: center;
 	margin-top: 30px;
 }
+
+.account-dashboard-box {
+	float: left;
+	background: #EDE7F6;
+	padding: 10px 16px;
+	box-sizing: border-box;
+	height: 150px;
+	margin-bottom: 100px;
+}
+
+.account-dashboard-content {
+	float: left;
+	width: calc(100% - 35px);
+}
+
+.account-dashboard-title {
+	font-size: 17px;
+	font-weight: lighter;
+	line-height: 20px;
+}
+
+.account-dashboard-info {
+	margin-top: 8px;
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.account-dashboard-edit {
+	float: left;
+	text-align: right;
+	width: 35px;
+}
