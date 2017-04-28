@@ -329,51 +329,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!--banner-->
 	<div class="col-md-2 sidenav">
-		<a href="#" style="color: #fa7455">Account Management</a>
+		<a href="account-management.html">Account Management</a>
 		<a href="my-profile.html">My Profile</a>
-		<a href="order.html">Order</a>
+		<a href="#" style="color: #fa7455">Order</a>
 
 	</div>
 
 	<br><br>
 	<div class="col-md-10 col-sm-10 col-lg-10" style="margin-bottom: 100px">
 		<br>
-		<h4>Account Management</h4><br><br>
-		<div class="col-md-3 col-sm-3 col-lg-3 account-dashboard-box">
-			<div class="account-dashboard-content">
-				<h4 class="account-dashboard-title">Profile</h4>
-				<p class="account-dashboard-info">
-					Nguyễn Song Hoàng Ngân
-					<br>
-					nguyensonghoangngan@gmail.com
-				</p>
-			</div>
-			<div class="account-dashboard-edit">
-				<a href="#">EDIT</a>
-			</div>
-		</div>
-		<div class="col-md-3 col-sm-3 col-lg-3 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 account-dashboard-box">
-			<div class="account-dashboard-content">
-				<h4 class="account-dashboard-title">Default order address</h4>
-				<p class="account-dashboard-info">
-					Default order address is not set
-					<br><br><br>
-					<a href="#">Add new address</a>
-				</p>
-			</div>
-			
-		</div>
-		<div class="col-md-3 col-sm-3 col-lg-3 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 account-dashboard-box">
-			<div class="account-dashboard-content">
-				<h4 class="account-dashboard-title">Default billing address</h4>
-				<p class="account-dashboard-info">
-					Default billing address is not set
-					<br><br><br>
-					<a href="#">Add new address</a>
-				</p>
-			</div>
-			
-		</div>
+		<h4>Order</h4><br><br>
+		<table id="datatable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Picture</th>
+                    <th>Product name</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+         	<tbody>
+         		<tr>
+         			<td>1</td>
+         			<td><img src="images/fa.jpg" width="60px" height="60px"></td>
+         			<td>Colorful croptop</td>
+         			<td>24-04-2017</td>
+         			<td>123$</td>
+         			<td>Delivered</td>
+         		</tr>
+         		<tr>
+         			<td>2</td>
+         			<td><img src="images/fa1.jpg" width="60px" height="60px"></td>
+         			<td>Black-white dress</td>
+         			<td>25-04-2017</td>
+         			<td>123$</td>
+         			<td>Delivered</td>
+         		</tr>
+         		<tr>
+         			<td>3</td>
+         			<td><img src="images/fa4.jpg" width="60px" height="60px"></td>
+         			<td>Pink dress</td>
+         			<td>26-04-2017</td>
+         			<td>123$</td>
+         			<td>Delivered</td>
+         		</tr>
+         	</tbody>
+        </table>
 		
 	</div>
 
