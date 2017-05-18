@@ -47,5 +47,38 @@ $(document).ready(function(){
   $('.forgot').on('click', function(){
     alert("We've just sent you an email, please check it !");
   });
+
+  //sign-up
+  $("#submit-register").click(function(){
+    var response;
+    var data = {
+      name: $('.first-name').val() + ' ' + $('.last-name').val(),
+      username: $('.new-username').val(),
+      email: $('.new-email').val(),
+      password: $('.new-password'),
+      role: 'member'
+    }
+    $.ajax({
+        async: false,
+        url: 'https://floating-woodland-31947.herokuapp.com/api/sign_up',
+        data: data,
+        timeout: 4000,
+        success: function(result) {
+            response = result;
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response = "err--" + XMLHttpRequest.status + " -- " + XMLHttpRequest.statusText;
+        }
+    });
+    // $.post("https://floating-woodland-31947.herokuapp.com/api/sign_up",{
+    //     name: $('.first-name').val() + ' ' + $('.last-name').val(),
+    //     username: $('.new-username').val(),
+    //     email: $('.new-email').val(),
+    //     password: $('.new-password'),
+    //     role: 'member'
+    //   },function(data, status){
+    //     alert("Data: " + data + "\nStatus: " + status);
+    // });
+  });
 });
 
