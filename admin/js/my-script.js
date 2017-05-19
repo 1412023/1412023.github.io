@@ -1,3 +1,4 @@
+
 function show(){
 		//window.location.href = "/admin/add-product.html";
 		$(".product-table").addClass("col-lg-6");
@@ -16,10 +17,40 @@ function hide(){
 		$(".form-edit").removeClass("edit-product-visible");
 		$(".form-edit").removeClass("col-lg-6");
 	};
+function updateAdminList() {
+	$.get("http://localhost:8042/api/users?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInJvbGUiOiJpbml0IiwiZGF0ZV9vZl9iaXJ0aCI6ImluaXQiLCJnZW5kZXIiOiJpbml0IiwiYXZhdGFyX2xpbmsiOiJpbml0IiwiZW1haWwiOiJpbml0IiwicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7fSwiaW5pdCI6eyJfX3YiOnRydWUsInJvbGUiOnRydWUsImRhdGVfb2ZfYmlydGgiOnRydWUsImdlbmRlciI6dHJ1ZSwiYXZhdGFyX2xpbmsiOnRydWUsImVtYWlsIjp0cnVlLCJwYXNzd29yZCI6dHJ1ZSwidXNlcm5hbWUiOnRydWUsIm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInJvbGUiOiJhZG1pbiIsImRhdGVfb2ZfYmlydGgiOiIyMDE1LTAzLTI0VDE3OjAwOjAwLjAwMFoiLCJnZW5kZXIiOiJtYWxlIiwiYXZhdGFyX2xpbmsiOiJodHRwczovL3MtbWVkaWEtY2FjaGUtYWswLnBpbmltZy5jb20vNzM2eC9lYS9jOS83OS9lYWM5NzliMmZkNmE4MTJiNGJkYWMxZDdlZjQxODk0ZC5qcGciLCJlbWFpbCI6Im5kYW4uaXR1c0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzExIiwidXNlcm5hbWUiOiJBbiIsIm5hbWUiOiJOZ3V54buFbiDEkMSDbmcgQW4iLCJfaWQiOiI1OTFlN2UwNWEzMjU3MjFjYTRmNDdmYTQifSwiaWF0IjoxNDk1MTcwNjg2LCJleHAiOjE0OTUyNTcwODZ9.WmBWrtc3DoV5nElYkqMF9ZSj3WTDK_8Q6JJ-xu91xXs",
+		function(data, status) {
+		console.log("Update admin list " + status);
+		$("#member-list").html("");
+        var memberCount=1;
+		data.forEach(function(user){
+			if (user.role=='admin') {
+                $("#member-list").append(
+                    '<tr>'+
+                    '<td>'+memberCount+'</td>'+
+                    '<td>'+user.username+'</td>'+
+                    '<td>'+user.name+'</td>'+
+                    '<td>'+user.email+'</td>'+
+                    '<td><span class="label label-primary">Admin</span></td>'+
+                    '<td><button class="delete-role btn btn-danger btn-sm">Delete</button></td></tr>');
+			} else {
+                $("#member-list").append(
+                    '<tr>'+
+                    '<td>'+memberCount+'</td>'+
+                    '<td>'+user.username+'</td>'+
+                    '<td>'+user.name+'</td>'+
+                    '<td>'+user.email+'</td>'+
+                    '<td><span class="label label-warning">Member</span></td>'+
+                    '<td><button class="delete-role btn btn-danger btn-sm">Delete</button></td></tr>');
+			}
 
+            memberCount++;
+		});
+	});
+};
 
 $(document).ready(function(){
-	var memberCount=4;
+	updateAdminList();
 	$(".delete-role").click(function(){
 		$(this).parent().parent().hide();
 	})
@@ -31,46 +62,47 @@ $(document).ready(function(){
 	})
 	$("#add-role-form").submit(function(event){
 		event.preventDefault();
-		var userName=null, name=null, email=null;
-		if ($("#user-name").val()!="")
-			userName = $("#user-name").val();
+		var userName=null, name=null, email=null, password = null,
+			avatar_link = null, gender = null, date_of_birth = null;
+		if ($("#username").val()!="")
+			userName = $("#username").val();
 		if ($("#name").val()!="")
 			name = $("#name").val();
 		if ($("#email").val()!="")
 			email = $("#email").val();
-		if (!(userName&&name&&email)) {
+        if ($("#password").val()!="")
+            password = $("#password").val();
+        if ($("#avatar_link").val()!="")
+            avatar_link = $("#avatar_link").val();
+        if ($("#gender").val()!="")
+            gender = $("#gender").val();
+        if ($("#date_of_birth").val()!="")
+            date_of_birth = $("#date_of_birth").val();
+
+        if (!(userName&&name&&email&&password&&avatar_link&&gender&&date_of_birth)) {
 			alert("Vui lòng điền đầy đủ thông tin");
 			return;
 		}
 
-		if ($("#role-selector").val()=='admin')
-			$("#member-list").append(
-			 					 	'<tr>'+
-	                                  '<td>'+memberCount+'</td>'+
-	                                  '<td>'+userName+'</td>'+
-	                                  '<td>'+name+'</td>'+                                 
-	                                  '<td>'+email+'</td>'+            
-	                                  '<td><span class="label label-primary">Admin</span></td>'+
-	                                  '<td><button class="delete-role btn btn-danger btn-sm">Delete</button></td></tr>');
-		if ($("#role-selector").val()=='editor')
-			$("#member-list").append(
-			 					 	'<tr>'+
-	                                  '<td>'+memberCount+'</td>'+
-	                                  '<td>'+userName+'</td>'+
-	                                  '<td>'+name+'</td>'+                                 
-	                                  '<td>'+email+'</td>'+            
-	                                  '<td><span class="label label-warning">Editor</span></td>'+
-	                                  '<td><button class="delete-role btn btn-danger btn-sm">Delete</button></td></tr>');
-		
-
-		memberCount++;
-		alert("Added");
-		$("#add-role-form").addClass("hidden");
-		$(".delete-role").click(function(){
-		$(this).parent().parent().hide();
-	})
-
-	})
+		// $.post("http://localhost:8042/api/sign_up", {
+         //    "name": name,
+		// 	"username": username,
+         //    "password": password,
+         //    "email": email,
+         //    "avatar_link": avatar_link,
+         //    "gender": gender,
+         //    "date_of_birth": date_of_birth,
+         //    "role": "admin"
+		// }, function(data, status){
+         //    console.log("Create new admin " + status);
+         //    updateAdminList();
+         //    $("#add-role-form").addClass("hidden");
+         //    $(".delete-role").click(function() {
+         //        $(this).parent().parent().hide()
+         //    });
+         //    alert("Đã thêm người dùng với vai trò Admin");
+		// }, 'json');
+	});
 	var categoryCount=3;
 	$(".delete").click(function(){
 		$(this).parent().parent().parent().hide();
@@ -213,5 +245,7 @@ $(document).ready(function(){
 		show();
 				
 	})
+
+	$
 });
 
