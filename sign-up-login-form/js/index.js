@@ -60,7 +60,7 @@ $(document).ready(function(){
       'role': 'member'
     }
     $.ajax({
-        url: 'http://localhost:8042/api/sign_up',
+        url: 'https://floating-woodland-31947.herokuapp.com/api/sign_up',
         type: 'POST',
         data: data,
         dataType : "json",
