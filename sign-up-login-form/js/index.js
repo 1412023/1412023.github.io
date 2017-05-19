@@ -49,36 +49,31 @@ $(document).ready(function(){
   });
 
   //sign-up
-  $("#submit-register").click(function(){
+  $("#test").click(function(event){
+    event.preventDefault();
     var response;
     var data = {
-      name: $('.first-name').val() + ' ' + $('.last-name').val(),
-      username: $('.new-username').val(),
-      email: $('.new-email').val(),
-      password: $('.new-password'),
-      role: 'member'
+      'name': $('.first-name').val() + ' ' + $('.last-name').val(),
+      'username': $('.new-username').val(),
+      'email': $('.new-email').val(),
+      'password': $('.new-password'),
+      'role': 'member'
     }
     $.ajax({
-        async: false,
-        url: 'https://floating-woodland-31947.herokuapp.com/api/sign_up',
+        url: 'http://localhost:8042/api/sign_up',
+        type: 'POST',
         data: data,
-        timeout: 4000,
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
         success: function(result) {
             response = result;
+            console.log(data);
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             response = "err--" + XMLHttpRequest.status + " -- " + XMLHttpRequest.statusText;
+            alert(response);
         }
     });
-    // $.post("https://floating-woodland-31947.herokuapp.com/api/sign_up",{
-    //     name: $('.first-name').val() + ' ' + $('.last-name').val(),
-    //     username: $('.new-username').val(),
-    //     email: $('.new-email').val(),
-    //     password: $('.new-password'),
-    //     role: 'member'
-    //   },function(data, status){
-    //     alert("Data: " + data + "\nStatus: " + status);
-    // });
   });
 });
 
