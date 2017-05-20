@@ -92,6 +92,7 @@ $(document).ready(function(){
             success: function(result) {
                 console.log(result);
                 document.cookie= 'access_token=' + result.token;
+                document.cookie= 'username=' + data.username;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("Check your information again");
