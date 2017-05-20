@@ -91,8 +91,15 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             success: function(result) {
                 console.log(result);
-                document.cookie= 'access_token=' + result.token;
-                document.cookie= 'username=' + data.username;
+                document.cookie =
+                    "access-token=" + result.token +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+                document.cookie =
+                    "username=" + data.username +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+                document.location.href = '../index.html';
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("Check your information again");
