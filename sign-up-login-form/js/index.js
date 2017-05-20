@@ -48,62 +48,56 @@ $(document).ready(function(){
     alert("We've just sent you an email, please check it !");
   });
 
-  // sign-up
-  $("#submit-register").click(function(event){
-    event.preventDefault();
-    var response;
-    var data = {
-      'name': $('.first-name').val() + ' ' + $('.last-name').val(),
-      'username': $('.new-username').val(),
-      'email': $('.new-email').val(),
-      'password': $('.new-password'),
-      'role': 'member',
-      'avatar_link': '',
-      'data_of_birth': '1900-01-01',
-      'gender': 'male'
-    };
-    $.ajax({
-        url: 'https://localhost:8042/api/sign_up',
-        type: 'POST',
-        data: JSON.stringify(data),
-        dataType : "json",
-        contentType: "application/json; charset=utf-8",
-        success: function(result) {
-           alert('success');
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert('error');
-        }
+  // Sign up
+   $("#submit-register").click(function(){
+          event.preventDefault();
+        var data = {
+          "name": $('.first-name').val() + ' ' + $('.last-name').val(),
+          "username": $('.new-username').val(),
+          "password": $('.new-password').val(),
+          "email": $('.new-email').val(),
+          "avatar_link": "",
+          "gender": "male",
+          "date_of_birth": "1996-04-02T17:00:00.000Z",
+          "role": "member"
+        };
+        $.ajax({
+            url: 'http://localhost:8042/api/sign_up',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                document.location.href = 'login.html';
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Check your information again");
+            }
+        });
     });
-  });
-   // $("#test").click(function(){
-   //        event.preventDefault();
-   //      var response;
-   //      var data = {
-   //        "name": "son",
-   //        "username": "leminhson19965678912345",
-   //        "password": "12347578789012345",
-   //        "email": "abcdsdsd1234d5@gmail.com",
-   //        "avatar_link": "abc.jpg",
-   //        "gender": "male",
-   //        "date_of_birth": "1996-04-02T17:00:00.000Z",
-   //        "role": "member"
-   //      };
-   //      $.ajax({
-   //          url: 'http://localhost:8042/api/sign_up',
-   //          type: 'POST',
-   //          data: JSON.stringify(data),
-   //          dataType : "json",
-   //          contentType: "application/json; charset=utf-8",
-   //          success: function(result) {
-   //              response = result;
-   //              alert('success');
-   //          },
-   //          error: function(XMLHttpRequest, textStatus, errorThrown) {
-   //              response = "err--" + XMLHttpRequest.status + " -- " + XMLHttpRequest.statusText;
-   //              alert(response);
-   //          }
-   //      });
-   //  });
+
+    // login
+    $(".login").click(function(){
+        event.preventDefault();
+        var data = {
+            "username": $('.username').val(),
+            "password": $('.password').val()
+        };
+        $.ajax({
+            url: 'http://localhost:8042/api/login',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                console.log(result);
+                document.cookie= 'access_token=' + result.token;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Check your information again");
+            }
+        });
+    });
+
 });
 
