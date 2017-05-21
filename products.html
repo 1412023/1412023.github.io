@@ -91,10 +91,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="head-top">
 			<div class="top-nav">
 				<ul class="header-in">
-					<li style="background-color: #615c85"><a style="color: #ffffff" href="index.html" >home</a></li>
+					<li><a href="index.html" >home</a></li>
 					<li><a href="about.html">about us</a> </li>
 					<li><a href="contact.html">contact us</a></li>
 					<li><a href="search.html">advance search</a></li>
+					<li style="background-color: #615c85"><a style="color: #ffffff" href="products.html">our products</a></li>
 				</ul>
 				<ul class="megamenu skyblue category-menu" id="filters" style="margin-left:15%">
 					<li class="active grid">
@@ -149,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				        </div>
 						<!---->
 						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" > <i> </i> </span></a>					
+							<a href="#" class="cup item_add"><span class="item_price" > <i> </i> </span></a>					
 						</div>
 						<!---->
 					</div>
@@ -220,48 +221,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	</div>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.category-menu').on('click', 'a.category-name', function (e) {
-			e.preventDefault();
-
-            $('li a.category-name').removeClass('active');
-            $(this).addClass('active');
-
-            var container = $('.pink');
-            container.find('.products').addClass('hidden');
-
-            var filterValue = $(this).attr('data-filter');
-            container.find(filterValue).removeClass('hidden');
-   		});
-	});
-
-        
-</script>
+<script type="text/javascript" src="js/my-script.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
-	    // Get categories menu
-        $.ajax({
-            url 		: 		"http://localhost:8042/api/all_categories",
-            type 		: 		'GET',
-            dataType 	: 		'json',
 
-            success 	: 		function(data) {
-
-                var categoriesLength = data.length;
-
-                for (var i = 0; i < categoriesLength; i++) {
-             		// Ngân thêm vô đây
-             		var categoryTemplate = $('.category-template').clone();
-             		categoryTemplate.removeClass('hidden');
-             		categoryTemplate.find('.category-name').html(data[i].name);
-             		(categoryTemplate.find('.category-name')).attr('data-filter', '.'+ data[i].slug);
-             		// console.log(dataFilter);
-             		$('.category-menu').append(categoryTemplate.html());
-                }
-            }
-        });
         //Load product items
 		$.ajax({
 			url 		: 		"http://localhost:8042/api/get_all_products",
