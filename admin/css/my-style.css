@@ -4,7 +4,9 @@
 	background-position: center center;
 
 }
-
+.product-table{
+	overflow: scroll;
+}
 .form-left {
 	width: 50%;
 	float: left;
