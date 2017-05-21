@@ -221,9 +221,11 @@ function updateProduct(nameNew, priceNew, categoryNew, imageSrc,colorNew, sizeNe
     })
 }
 function setMemberRole(username, role){
-	allUser.forEach(function(user){
+	var check =false;
+    allUser.forEach(function(user){
 		if (user.username == username)
 		{
+		    check = true;
             $.ajax({
                 url: 'http://localhost:8042/api/users/'+user._id+token,
                 type: 'PUT',
@@ -242,7 +244,8 @@ function setMemberRole(username, role){
             });
 		}
 	})
-	alert("Username không tồn tại");
+	if (!check)
+	    alert("Username không tồn tại");
 }
 function updateProductList() {
     $.get("http://localhost:8042/api/get_all_products"+token,
