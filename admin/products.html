@@ -337,56 +337,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		                                      <th>EDIT</th>
 		                                  	</tr>
 	                              		</thead>
-	                              		<tbody>
-			                                <tr>
-			                                  <td>1</td>
-			                                  <td><img class="icon-row" src="images/pro9.jpg"></td>
-			                                  <td>Áo đầm công sở</td>                                 
-			                                  <td>592.000 VNĐ</td>            
-			                                  <td>Quần áo</td>
-			                                  <td>
-			                                  	<div>
-			                                  		<button  class="delete edit-button btn btn-danger">Delete</button>
-			                                  	</div>
-			                                  	<div>
-			                                  		<button  class="edit edit-button btn btn-success">Edit</button>
-			                                  	</div>
-			                                  	
-				                               </td>
-			                              	</tr>
-				                              <tr>
-				                                  <td>2</td>
-				                                  <td><img class="icon-row" src="images/pro12.jpg"></td>
-				                                  <td>Tivi led 32 inches</td>     
-				                                  <td>14.000.000 VNĐ</td>                            
-				                                  <td>Đồ điện tử</td>
-				                                  <td>
-				                                  	<div>
-				                                  		<button  class="delete edit-button btn btn-danger">Delete</button>
-				                                  	</div>
-				                                  	<div>
-				                                  		<button  class="edit edit-button btn btn-success">Edit</button>
-				                                  	</div>
-				                                  	
-				                                  </td>
-				                              </tr>
-				                              <tr>
-				                                  <td>3</td>
-				                                  <td><img class="icon-row" src="images/pro10.jpg"></td>
-				                                  <td>Samsung Smart TV</td>                                 
-				                                  <td>100.000.000 VNĐ</td>            
-				                                  <td>Đồ điện tử</td>
-				                                  <td>
-				                                  	<div>
-				                                  		<button  class="delete edit-button btn btn-danger">Delete</button>
-				                                  	</div>
-				                                  	<div>
-				                                  		<button  class="edit edit-button btn btn-success">Edit</button>
-				                                  	</div>
-				                                  	
-				                                  </td>
-				                              </tr>
-	                             
+	                              		<tbody id="product-list">
 	                          			</tbody>
 	                     			 </table>
 									</div>
@@ -402,7 +353,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="form-group">
 												  <label class="col-md-4 control-label" for="textinput">Name</label>  
 												  <div class="col-md-6">
-												  <input id="name" name="name" type="text" placeholder="New name" class="form-control input-md">
+												  <input id="product-name" name="name" type="text" placeholder="" class="form-control input-md">
 												  </div>
 												</div>
 
@@ -410,8 +361,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="form-group">
 												  <label class="col-md-4 control-label" for="textinput">Price</label>  
 												  <div class="col-md-6">
-												  <input id="price" name="price" type="text" placeholder="New price" class="form-control input-md">
+												  <input id="product-price" name="price" type="text" placeholder="" class="form-control input-md">
 												  </div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textinput">Color</label>
+													<div class="col-md-6">
+														<input id="product-color" name="color" type="text" placeholder="" class="form-control input-md">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="size">Size</label>
+													<div class="col-md-6">
+														<select id="product-size" name="size" class="form-control">
+															<option value="S">S</option>
+															<option value="M">M</option>
+															<option value="L">L</option>
+															<option value="XL">XL</option>
+															<option value="XXL">XXL</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textinput">Brand</label>
+													<div class="col-md-6">
+														<input id="product-brand" name="brand" type="text" placeholder="" class="form-control input-md">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textinput">Sale</label>
+													<div class="col-md-6">
+														<input id="product-sale" name="sale" type="text" placeholder="The percent of Sales" class="form-control input-md">
+													</div>
 												</div>
 
 												<!-- Text input-->
@@ -419,23 +403,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 												<!-- Multiple Checkboxes -->
 												<div class="form-group">
-												  <label class="col-md-4 control-label" for="checkboxes">Category</label>
-												  <div class="col-md-4">
-												  <div class="checkbox">
-												    <label for="checkboxes-0">
-												      <input type="checkbox" name="checkboxes" id="clothes" value="Clothes">
-												      Clothes
-												    </label>
+													<label class="col-md-4 control-label" for="size">Category</label>
+													<div class="col-md-6">
+														<select id="product-category" name="category" class="form-control">
+														</select>
 													</div>
-												  <div class="checkbox">
-												    <label for="checkboxes-1">
-												      <input type="checkbox" name="checkboxes" id="car" value="Car">
-												      Car
-												    </label>
-													</div>
-												  </div>
 												</div>
-
 												<div class="form-group">
 													  <label class="col-md-4 control-label" for="filebutton">Image</label>
 													  <div class="col-md-4">
@@ -453,7 +426,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="form-group">
 												  <label class="col-md-4 control-label" for="textarea">Description</label>
 												  <div class="col-md-6">                     
-												    <textarea class="form-control" id="textarea" name="textarea">Description...</textarea>
+												    <textarea class="form-control" id="product-des" name="textarea">Description...</textarea>
 												  </div>
 												</div>
 
