@@ -317,14 +317,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="single">
 			<div class="col-md-9 top-in-single">
 				<div class="col-md-5 single-top">	
-					<img class="product-image" src="images/fa.jpg">
+					<img class="product-image" src="">
 					
 
 				</div>	
 				<div class="col-md-7 single-top-in">
 					<div class="single-para">
-						<h4 class="product-name">Caro Dress</h4>
-						<p class="product-description">Best dress for beautiful girl. Made with high-quality material.</p>
+						<h4 class="product-name"></h4>
+						<p class="product-description"></p>
 						<div class="star-on">
 							<ul>
 								<li><a href="#"><i> </i></a></li>
@@ -340,7 +340,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 						</div>
 						
-							<label  class="add-to product-price">$32.8</label>
+							<label  class="add-to product-price"></label>
 						
 						<div class="available">
 							<h6>Available Options :</h6>
@@ -358,7 +358,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 						</div>
 						<div>
-							<a href="#" class="cart">Add to cart</a>
+							<a href="" class="cart">Add to cart</a>
 						</div>
 						<div class="like-share">								
 							<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2F1412453.github.io%2Fsingle.html&width=104&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=834137536743711" width="104" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -513,7 +513,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			url 			: 		'http://localhost:8042/api/get_all_brands?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicm9sZSI6ImluaXQiLCJfX3YiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsicm9sZSI6dHJ1ZSwiX192Ijp0cnVlLCJfaWQiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MCwiX21heExpc3RlbmVycyI6MH19LCJpc05ldyI6ZmFsc2UsIl9kb2MiOnsicm9sZSI6ImFkbWluIiwiX192IjowLCJfaWQiOiI1OTFlNjk1NTljM2JiNjE4NjhjYjc4NTUifSwiaWF0IjoxNDk1MjEzMzg2LCJleHAiOjE0OTUyOTk3ODZ9.rM-1FnIGX3CYYMFxjklPh21PVXCzLy9faPeB9U-mfng',
 			type 			: 		'GET',
 			dataType 		: 		'json',
-
+			async: true,
 			success 		: 		function(data) {
 				data = makeDifferent(data);
 				var brandLength = data.length;
@@ -534,7 +534,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			url 			: 		'http://localhost:8042/api/get_all_colors?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicm9sZSI6ImluaXQiLCJfX3YiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsicm9sZSI6dHJ1ZSwiX192Ijp0cnVlLCJfaWQiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MCwiX21heExpc3RlbmVycyI6MH19LCJpc05ldyI6ZmFsc2UsIl9kb2MiOnsicm9sZSI6ImFkbWluIiwiX192IjowLCJfaWQiOiI1OTFlNjk1NTljM2JiNjE4NjhjYjc4NTUifSwiaWF0IjoxNDk1MjEzMzg2LCJleHAiOjE0OTUyOTk3ODZ9.rM-1FnIGX3CYYMFxjklPh21PVXCzLy9faPeB9U-mfng',
 			type 			: 		'GET',
 			dataType 		: 		'json',
-
+            async: true,
 			success 		: 		function(data) {
 				data = makeDifferent(data);
 				var colorLength = data.length;
@@ -557,11 +557,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 		$.ajax({
-			url 			: 		'http://localhost:8042/api/get_a_product/' + productId + '/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicm9sZSI6ImluaXQiLCJfX3YiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsicm9sZSI6dHJ1ZSwiX192Ijp0cnVlLCJfaWQiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MCwiX21heExpc3RlbmVycyI6MH19LCJpc05ldyI6ZmFsc2UsIl9kb2MiOnsicm9sZSI6ImFkbWluIiwiX192IjowLCJfaWQiOiI1OTFlNjk1NTljM2JiNjE4NjhjYjc4NTUifSwiaWF0IjoxNDk1MjEzMzg2LCJleHAiOjE0OTUyOTk3ODZ9.rM-1FnIGX3CYYMFxjklPh21PVXCzLy9faPeB9U-mfng',
+			url 			: 		'http://localhost:8042/api/get_a_product/' + productId,
 
 			type 			: 		'GET',
 			dataType 		: 		'json',
-
+            async: true,
 			success 		: 		function(data) {
 
 				$('.product-image').attr('src', data.image_link);
@@ -582,7 +582,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			url 			: 		'http://localhost:8042/api/get_limit_products/'+ relatedCount +'/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicm9sZSI6ImluaXQiLCJfX3YiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiaWdub3JlIjp7fSwiZGVmYXVsdCI6e30sImluaXQiOnsicm9sZSI6dHJ1ZSwiX192Ijp0cnVlLCJfaWQiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MCwiX21heExpc3RlbmVycyI6MH19LCJpc05ldyI6ZmFsc2UsIl9kb2MiOnsicm9sZSI6ImFkbWluIiwiX192IjowLCJfaWQiOiI1OTFlNjk1NTljM2JiNjE4NjhjYjc4NTUifSwiaWF0IjoxNDk1MjEzMzg2LCJleHAiOjE0OTUyOTk3ODZ9.rM-1FnIGX3CYYMFxjklPh21PVXCzLy9faPeB9U-mfng',
 			type 			: 		'GET',
 			dataType 		: 		'json',
-
+            async: false,
 			success 			: 		function(data) {
 				console.log(data);
 
@@ -599,12 +599,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											'</div>';
 					$('.products-related').append(productRelated);		
 				}
-
-				
-				
-				// var str = ''
 			}
-		})
+		});
+
+        //Get user infor
+		var order_data;
+        $.ajax({
+            url: 'http://localhost:8042/api/users/username?token=' + docCookies.getItem('access-token'),
+            type: 'POST',
+            dataType : "json",
+            data: JSON.stringify({"username": docCookies.getItem('username')}),
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function(userinfor) {
+                console.log(userinfor);
+                document.cookie =
+                    "user_id=" + userinfor[0]._id +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+                order_data = {
+                    "_product": productId,
+                    "_user": userinfor[0]._id,
+					"amount": "1",
+					"date": new Date(),
+					"status": "pending"
+                };
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Cannot load your user information");
+            }
+        });
+
+        //Add order
+		$(".cart").click(function () {
+            console.log(order_data);
+                $.ajax({
+                    url 			: 		'http://localhost:8042/api/order/?token=' + docCookies.getItem('access-token'),
+                    type 			: 		'POST',
+                    dataType 		: 		'json',
+                    data: order_data,
+                    async: false,
+                    success: function(result) {
+                        console.log(result);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Fail to add your order");
+                    }
+                });
+            });
 	});
 </script>
 </body>

@@ -77,6 +77,8 @@ $(document).ready(function(){
     });
 
     // login
+    var token;
+    var login = false;
     $(".login").click(function(){
         event.preventDefault();
         var data = {
@@ -90,7 +92,9 @@ $(document).ready(function(){
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             success: function(result) {
+                login = true;
                 console.log(result);
+                token = result.token;
                 document.cookie =
                     "access-token=" + result.token +
                     "; max-age=" + 60*60*24*30 +
