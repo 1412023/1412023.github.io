@@ -36,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 
 <script src="js/simpleCart.min.js"> </script>
+<script src="js/search.js"></script>
 </head>
 <body> 
 <!--header-->	
@@ -50,9 +51,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="search-top">
 				<div class="search">
-					<form>
-						<input type="text" value="search about something ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'search about something ?';}" >
-						<input type="submit" value="" >
+					<form id="searchByKeyword">
+						<input type="text" name="searchText" value="search about something ?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'search about something ?';}" >
+						<input type="submit" value="">
 					</form>
 				</div>
 				
@@ -248,6 +249,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </ul> 
 				</div>
 		
+=======
+				<li><a href="search.html">advance search</a></li>
+			</ul>		  
+		</div>
+>>>>>>> a58ce9f2bbb4a2fd2f4e507e4e489b3a2819b484
 				<div class="clearfix"> </div>
 		</div>
 		</div>
@@ -258,323 +264,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div id="sideBar" class="col-md-3 col-xs-12 col-sm-12 col-lg-3">
 			<p class="text-uc text-sm m-b-xs m-t-xs">Category</p>
-			<div class="list-group">
-         			 <a href="#" class="list-group-item font-bold ">All Categories</a>
-                     <a href="#" class="list-group-item active"> T-shirt</a>
-                     <a href="#" class="list-group-item ">Watch</a>
-                     <a href="#" class="list-group-item ">Shoes</a>
-            </div>
+			<!--This is for the categories list-->
+			<div class="list-group"></div>
 			<div class="line"></div>
-			<form method="post" id='myForm'>
-	        <input type="hidden" name="catID" value="9">
-	        <input type="hidden" name="type" value="course">
-	        <input type="hidden" name="action" value="1">
-			<p class="text-uc text-sm">Arrange</p>
-			<div class="radio">
-	            <input type="radio" name="sort" value="new" checked>
-	            <i class="fa fa-circle-o"></i> Newest </label>
+			<form method="post" id='filterForm'>
+			<p class="text-uc text-sm">Size</p>
+			<div>
+				<div class="radio">
+		            <input type="radio" name="size" value="S" checked> S </label>
+		        </div>
+		        <div class="radio">
+		          <label class="text-muted">
+		            <input type="radio" name="size" value="M" > M </label>
+		        </div>
+		        <div class="radio">  
+		          <label class="text-muted">
+		            <input type="radio" name="size" value="L" > L </label>
+		        </div>
+		        <div class="radio">  
+		          <label class="text-muted">
+		            <input type="radio" name="size" value="XL" > XL </label>
+		        </div>
+		        <div class="radio">  
+		          <label class="text-muted">
+		            <input type="radio" name="size" value="XXL" > XXL </label>
+		        </div>
 	        </div>
-	        <div class="radio">
-	          <label class="text-muted">
-	            <input type="radio" name="sort" value="hot" >
-	            Hot </label>
-	        </div>
-	        <div class="radio">  
-	          <label class="text-muted">
-	            <input type="radio" name="sort" value="feature" >
-	            On sales          </label>
-	        </div>
-			<p class="text-uc text-sm">Price</p>
-			 <div class="checkbox">
-              <label class="text-muted">
-                <input type="checkbox" name="level[]" value="1" >
-                Economic              </label>
-            </div>
-                      <div class="checkbox">
-              <label class="text-muted">
-                <input type="checkbox" name="level[]" value="2" >
-                Medium              </label>
-            </div>
-                      <div class="checkbox">
-              <label class="text-muted">
-                <input type="checkbox" name="level[]" value="3" >
-                High-class             </label>
-            </div>
-
-             <a href="#" onclick="document.getElementById('myForm').submit()" class="btn btn-white btn-sm btn-block">Search</a>
+             <a href="#" onclick="getProductByFilter()" class="btn btn-white btn-sm btn-block" style="margin-bottom: 30px;">Search</a>
              </form>
 
 		</div>
-
-				<div id="result" class="col-lg-9 col-md-9">
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12" >
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi12.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi13.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi11.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi13.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							 <a href="single.html" > <img src="./images/pi12.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-				<div class="item col-lg-4 col-md-4 col-sm-5 col-xs-12">
-					<div class=" box-in">
-						<div class=" grid_box">		
-							<a href="single.html" > <img src="./images/pi11.jpg" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>                     
-										<li><span>S</span></li>
-										<li><span>XS</span></li>
-										<li><span>M</span></li>
-										<li><span> L</span></li>
-										<li><span>XL</span></li>
-										<li><span> XXL</span></li>
-									</ul>
-					
-					
-									<ul class="in-by-color">
-										<li><h5>colors:</h5></li>                   
-										<li><span > </span></li>
-										<li><span class="color"> </span></li>
-										<li><span class="color1"> </span></li>
-										<li><span class="color2"> </span></li>
-										<li><span class="color3"> </span></li>
-										
-									</ul>
-					
-								</div> 
-							</a> 	
-		           		</div>
-				<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" >123 $ <i> </i> </span></a>					
-						</div>
-					<!---->
-					</div>
-				</div>
-
-				</div>
-
+		<!--This is for the result-->
+		<div id="result" class="col-lg-9 col-md-9">
 	</div>
 	<!--footer-->
-	<div class="footer">
+	<footer class="footer-class">
+		<div class="footer">
 		<div class="container">
 			<div class="col-md-3 footer-left">
 				<a href="index.html">Group 1</a>
@@ -609,12 +334,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"> </div>
 		</div>
-		<footer class="footer-class">Copyright© 2017 - Group 1. All Rights Reserved</footer>
+	<div style="margin-top: 30px;"> Copyright© 2017 - Group 1. All Rights Reserved </div>
+	</footer>
 		<script type="text/javascript">
 						$(document).ready(function() {							
 							$().UItoTop({ easingType: 'easeOutQuart' });
+							//alert('hi12423');
 						});
-					</script>
+		</script>
+		
+
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	</div>
 
