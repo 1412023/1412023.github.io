@@ -48,37 +48,64 @@ $(document).ready(function(){
     alert("We've just sent you an email, please check it !");
   });
 
-  //sign-up
-  $("#submit-register").click(function(){
-    var response;
-    var data = {
-      name: $('.first-name').val() + ' ' + $('.last-name').val(),
-      username: $('.new-username').val(),
-      email: $('.new-email').val(),
-      password: $('.new-password'),
-      role: 'member'
-    }
-    $.ajax({
-        async: false,
-        url: 'https://floating-woodland-31947.herokuapp.com/api/sign_up',
-        data: data,
-        timeout: 4000,
-        success: function(result) {
-            response = result;
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            response = "err--" + XMLHttpRequest.status + " -- " + XMLHttpRequest.statusText;
-        }
+  // Sign up
+   $("#submit-register").click(function(){
+          event.preventDefault();
+        var data = {
+          "name": $('.first-name').val() + ' ' + $('.last-name').val(),
+          "username": $('.new-username').val(),
+          "password": $('.new-password').val(),
+          "email": $('.new-email').val(),
+          "avatar_link": "",
+          "gender": "male",
+          "date_of_birth": "1996-04-02T17:00:00.000Z",
+          "role": "member"
+        };
+        $.ajax({
+            url: 'http://localhost:8042/api/sign_up',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                document.location.href = 'login.html';
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Check your information again");
+            }
+        });
     });
-    // $.post("https://floating-woodland-31947.herokuapp.com/api/sign_up",{
-    //     name: $('.first-name').val() + ' ' + $('.last-name').val(),
-    //     username: $('.new-username').val(),
-    //     email: $('.new-email').val(),
-    //     password: $('.new-password'),
-    //     role: 'member'
-    //   },function(data, status){
-    //     alert("Data: " + data + "\nStatus: " + status);
-    // });
-  });
+
+    // login
+    $(".login").click(function(){
+        event.preventDefault();
+        var data = {
+            "username": $('.username').val(),
+            "password": $('.password').val()
+        };
+        $.ajax({
+            url: 'http://localhost:8042/api/login',
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                console.log(result);
+                document.cookie =
+                    "access-token=" + result.token +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+                document.cookie =
+                    "username=" + data.username +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+                document.location.href = '../index.html';
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Check your information again");
+            }
+        });
+    });
+
 });
 
