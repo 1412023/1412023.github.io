@@ -96,8 +96,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="contact.html">contact us</a></li>
 					<li><a href="search.html">advance search</a></li>
 				</ul>
-				<ul class="megamenu skyblue hidden categorymenu" style="margin-left:15%">
-					<li class="active grid category hidden"><a class="category-name" href="#">Category</a></li>
+				<ul class="megamenu skyblue category-menu" id="filters" style="margin-left:15%">
+					<li class="active grid">
+						<a class="category-name active" data-filter=".all" href="#">All</a>
+					</li>
+					<div class="category-template hidden">
+						<li class="active grid">
+							<a class="category-name" data-filter="Category" href="#">Category</a>
+						</li>
+					</div>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -111,9 +118,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="pink">
 					
 				<div class="product-template hidden">
-					<div class="col-md-3 box-in-at">
+					<div class="col-md-3 box-in-at products">
 						<div class=" grid_box portfolio-wrapper">		
-							<a href="single.html" class="product-url"> <img src="<%= product.image_link %>" class="img-responsive product-image" alt="">
+							<a href="single.html" class="product-url"> <img src="" class="img-responsive product-image" alt="">
 								<div class="zoom-icon">
 										 		
 									<ul class="in-by">
@@ -142,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				        </div>
 						<!---->
 						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add"><span class=" item_price" ><%= product.price %> <i> </i> </span></a>					
+							<a href="#" class="cup item_add"><span class=" item_price" > <i> </i> </span></a>					
 						</div>
 						<!---->
 					</div>
@@ -215,38 +222,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('.category-menu').on('click', 'a.category-name', function (e) {
+			e.preventDefault();
+
+            $('li a.category-name').removeClass('active');
+            $(this).addClass('active');
+
+            var container = $('.pink');
+            container.find('.products').addClass('hidden');
+
+            var filterValue = $(this).attr('data-filter');
+            container.find(filterValue).removeClass('hidden');
+   		});
+	});
+
+        
+</script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
 	    // Get categories menu
         $.ajax({
-            url 		: 		"http://localhost:8042/api/all_categories?token=" + docCookies.getItem('access-token'),
+            url 		: 		"http://localhost:8042/api/all_categories",
             type 		: 		'GET',
             dataType 	: 		'json',
 
             success 	: 		function(data) {
 
-                console.log(data);
                 var categoriesLength = data.length;
 
                 for (var i = 0; i < categoriesLength; i++) {
              		// Ngân thêm vô đây
+             		var categoryTemplate = $('.category-template').clone();
+             		categoryTemplate.removeClass('hidden');
+             		categoryTemplate.find('.category-name').html(data[i].name);
+             		(categoryTemplate.find('.category-name')).attr('data-filter', '.'+ data[i].slug);
+             		// console.log(dataFilter);
+             		$('.category-menu').append(categoryTemplate.html());
                 }
             }
         });
-
         //Load product items
 		$.ajax({
-			url 		: 		"http://localhost:8042/api/get_all_products?token=" + docCookies.getItem('access-token'),
+			url 		: 		"http://localhost:8042/api/get_all_products",
 			type 		: 		'GET',
 			dataType 	: 		'json',
+			async		: 		false,
 
 			success 	: 		function(data) {
-
+				console.log(data);
                 var productLength = data.length;
                 for (var i = 0; i < productLength; i++) {
                     var productTemplate = $('.product-template').clone();
                     productTemplate.removeClass('hidden');
+                    (productTemplate.find('.products')).addClass('all');
+
+                    var categoryId = data[i]._category;
+                    var slug;
+                    $.ajax({
+						url 		: 		'http://localhost:8042/api/category/' + categoryId,
+						type 		: 		'GET',
+						dataType 	: 		'json',
+						async		: 		false,
+
+					}).done(function(data) {
+						// console.log(data.slug);
+						slug = data.slug;
+					});
+                    (productTemplate.find('.products')).addClass(slug);
                     productTemplate.find('.product-image').attr('src', data[i].image_link);
                     productTemplate.find('.item_price').html(data[i].price);
                     productTemplate.find('.product-url').attr('href' ,'single.html?id=' + data[i]._id);
+                    
+                    
+                    
                     $('.pink').append(productTemplate.html());
                 }
 			}
