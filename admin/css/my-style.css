@@ -59,3 +59,6 @@
 .edit-product-visible {
 	visibility: visible;
 }
+.panel {
+	padding: 0;
+}
