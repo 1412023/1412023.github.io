@@ -1,11 +1,12 @@
 var allUser ={};
 var allProduct = {};
 var allCategory = {};
+var allOrder = {};
 var addProductOrEdit;
 var productName;
 var imageSrc=null;
 
-var token = "?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInJvbGUiOiJpbml0IiwiZGF0ZV9vZl9iaXJ0aCI6ImluaXQiLCJnZW5kZXIiOiJpbml0IiwiYXZhdGFyX2xpbmsiOiJpbml0IiwiZW1haWwiOiJpbml0IiwicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7fSwiaW5pdCI6eyJfX3YiOnRydWUsInJvbGUiOnRydWUsImRhdGVfb2ZfYmlydGgiOnRydWUsImdlbmRlciI6dHJ1ZSwiYXZhdGFyX2xpbmsiOnRydWUsImVtYWlsIjp0cnVlLCJwYXNzd29yZCI6dHJ1ZSwidXNlcm5hbWUiOnRydWUsIm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInJvbGUiOiJhZG1pbiIsImRhdGVfb2ZfYmlydGgiOiIyMDE1LTAzLTI0VDE3OjAwOjAwLjAwMFoiLCJnZW5kZXIiOiJtYWxlIiwiYXZhdGFyX2xpbmsiOiJodHRwczovL3MtbWVkaWEtY2FjaGUtYWswLnBpbmltZy5jb20vNzM2eC9lYS9jOS83OS9lYWM5NzliMmZkNmE4MTJiNGJkYWMxZDdlZjQxODk0ZC5qcGciLCJlbWFpbCI6Im5kYW4uaXR1c0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzExIiwidXNlcm5hbWUiOiJBbiIsIm5hbWUiOiJOZ3V54buFbiDEkMSDbmcgQW4iLCJfaWQiOiI1OTFlN2UwNWEzMjU3MjFjYTRmNDdmYTQifSwiaWF0IjoxNDk1MjY0MTI4LCJleHAiOjE0OTUzNTA1Mjh9.OQ9hk-6-wzazbIdpL3ad75Q58sVTqDBIOWQkisCAdl4";
+var token = "?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInJvbGUiOiJpbml0IiwiZGF0ZV9vZl9iaXJ0aCI6ImluaXQiLCJnZW5kZXIiOiJpbml0IiwiYXZhdGFyX2xpbmsiOiJpbml0IiwiZW1haWwiOiJpbml0IiwicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7fSwiaW5pdCI6eyJfX3YiOnRydWUsInJvbGUiOnRydWUsImRhdGVfb2ZfYmlydGgiOnRydWUsImdlbmRlciI6dHJ1ZSwiYXZhdGFyX2xpbmsiOnRydWUsImVtYWlsIjp0cnVlLCJwYXNzd29yZCI6dHJ1ZSwidXNlcm5hbWUiOnRydWUsIm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInJvbGUiOiJhZG1pbiIsImRhdGVfb2ZfYmlydGgiOiIyMDE1LTAzLTI0VDE3OjAwOjAwLjAwMFoiLCJnZW5kZXIiOiJtYWxlIiwiYXZhdGFyX2xpbmsiOiJodHRwczovL3MtbWVkaWEtY2FjaGUtYWswLnBpbmltZy5jb20vNzM2eC9lYS9jOS83OS9lYWM5NzliMmZkNmE4MTJiNGJkYWMxZDdlZjQxODk0ZC5qcGciLCJlbWFpbCI6Im5kYW4uaXR1c0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzExIiwidXNlcm5hbWUiOiJBbiIsIm5hbWUiOiJOZ3V54buFbiDEkMSDbmcgQW4iLCJfaWQiOiI1OTFlN2UwNWEzMjU3MjFjYTRmNDdmYTQifSwiaWF0IjoxNDk1NDE5NTY3LCJleHAiOjE0OTU1MDU5Njd9.B2H7e6Dg79WhiiACOhtqESelDc6bTIhHluVcbMOznY8";
 function show(){
 		//window.location.href = "/admin/add-product.html";
 		$(".product-table").addClass("col-lg-6");
@@ -15,7 +16,6 @@ function show(){
 		$(".form-edit").addClass("col-lg-6");
 
 	};
-
 function hide(){
 		//window.location.href = "/admin/add-product.html";
 		$(".product-table").removeClass("col-lg-6");
@@ -133,6 +133,26 @@ function findCategoryById(id){
     allCategory.forEach(function(category){
         if (category._id == id) {
             ressult = category.name;
+            return;
+        }
+    })
+    return ressult;
+}
+function findUserById(id){
+    var ressult;
+    allUser.forEach(function(user){
+        if (user._id == id) {
+            ressult = user.name;
+            return;
+        }
+    })
+    return ressult;
+}
+function findProductById(id){
+    var ressult;
+    allProduct.forEach(function(product){
+        if (product._id == id) {
+            ressult = product.name;
             return;
         }
     })
@@ -279,6 +299,7 @@ function updateProductList() {
                 productCount++;
             });
             updateProductBtn();
+            updateOrderLists();
         });
 }
 function addProduct(nameNew, priceNew, categoryNew, imageSrc,colorNew, sizeNew, brandNew, saleNew, desNew){
@@ -332,14 +353,38 @@ function addCategory(name, slug, des){
         }
     });
 }
+function updateOrderLists(){
+    $.get("http://localhost:8042/api/all_orders"+token,
+        function(data, status) {
+            console.log("Update orders list " + status);
+            $("#order-list").html("");
+            var Count=1;
+            allOrder = data;
+            allOrder.forEach(function(order){
+                var date = new Date(order.date);
+                $("#order-list").append(
+                '<li class="list-group-item">'+
+
+                    '<p class="col-lg-1">'+Count+'</p>'+
+                    '<p class="col-lg-3">'+findProductById(order._product)+'</p>'+
+                    '<p class="col-lg-2">'+findUserById(order._user)+'</p>'+
+                    '<p class="col-lg-2">'+date.getDate()+'/'+date.getMonth()+'/'+date.getYear()+'</p>'+
+                    '<p style="display: inline">'+order.status+'</p>'+
+                    '<button class="btn btn-success edit-order" style="float: right; margin-left: 5em">Edit</button>'+
+                    '<span class="badge">'+order.amount+'</span>'+
+                    '</li>'
+                );
+                Count++;
+            });
+            //updateProductBtn();
+        }
+    );
+}
 $(document).ready(function(){
 	updateAdminList();
     updateCategoryList();
 	updateProductList();
 
-	$(".delete-role").click(function(){
-		$(this).parent().parent().hide();
-	})
 	$("#add-role-button").click(function(){
 		$("#add-role-form").removeClass("hidden");
 	})
@@ -373,7 +418,6 @@ $(document).ready(function(){
 		}
         addCategory(name, slug, des);
 	});
-
 	$("#product-form").submit(function(event){
 				event.preventDefault();
 				var nameNew, priceNew, categoryNew, colorNew, sizeNew, brandNew, saleNew, desNew;
