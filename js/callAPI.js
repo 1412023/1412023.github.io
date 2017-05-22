@@ -8,7 +8,7 @@ $(document).ready(function(){
             document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
         });
         document.location.href = 'sign-up-login-form/login.html';
-    })
+    });
 
     var token = docCookies.getItem('access-token');
     if (token){
@@ -21,6 +21,13 @@ $(document).ready(function(){
         $("#logout").hide();
         $("#user-name").hide();
     }
+
+    $('.logo').click(function (event) {
+        event.preventDefault();
+        if(docCookies.getItem('role')==='admin'){
+            document.location.href = 'admin/index.html';
+        }
+    })
 });
 
 var docCookies = {

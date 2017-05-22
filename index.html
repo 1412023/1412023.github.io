@@ -527,6 +527,21 @@
 	      });
 	    } // End if
 	  });
+
+        $.ajax({
+            url: 'http://localhost:8042/api/users/username?token=' + docCookies.getItem('access-token'),
+            type: 'POST',
+            data: JSON.stringify({"username": docCookies.getItem('username')}),
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            credentials: 'include',
+            success: function(result) {
+                document.cookie =
+                    "role=" + result[0].role +
+                    "; max-age=" + 60*60*24*30 +
+                    "; path=/" ;
+            }
+        });
 	});
 </script>
 </html>

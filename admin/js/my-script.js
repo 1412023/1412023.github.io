@@ -6,7 +6,74 @@ var addProductOrEdit;
 var productName;
 var imageSrc=null;
 
-var token = "?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInJvbGUiOiJpbml0IiwiZGF0ZV9vZl9iaXJ0aCI6ImluaXQiLCJnZW5kZXIiOiJpbml0IiwiYXZhdGFyX2xpbmsiOiJpbml0IiwiZW1haWwiOiJpbml0IiwicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwibmFtZSI6ImluaXQiLCJfaWQiOiJpbml0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7fSwiaW5pdCI6eyJfX3YiOnRydWUsInJvbGUiOnRydWUsImRhdGVfb2ZfYmlydGgiOnRydWUsImdlbmRlciI6dHJ1ZSwiYXZhdGFyX2xpbmsiOnRydWUsImVtYWlsIjp0cnVlLCJwYXNzd29yZCI6dHJ1ZSwidXNlcm5hbWUiOnRydWUsIm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiLCJpZ25vcmUiXX0sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInJvbGUiOiJhZG1pbiIsImRhdGVfb2ZfYmlydGgiOiIyMDE1LTAzLTI0VDE3OjAwOjAwLjAwMFoiLCJnZW5kZXIiOiJtYWxlIiwiYXZhdGFyX2xpbmsiOiJodHRwczovL3MtbWVkaWEtY2FjaGUtYWswLnBpbmltZy5jb20vNzM2eC9lYS9jOS83OS9lYWM5NzliMmZkNmE4MTJiNGJkYWMxZDdlZjQxODk0ZC5qcGciLCJlbWFpbCI6Im5kYW4uaXR1c0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzExIiwidXNlcm5hbWUiOiJBbiIsIm5hbWUiOiJOZ3V54buFbiDEkMSDbmcgQW4iLCJfaWQiOiI1OTFlN2UwNWEzMjU3MjFjYTRmNDdmYTQifSwiaWF0IjoxNDk1NDE5NTY3LCJleHAiOjE0OTU1MDU5Njd9.B2H7e6Dg79WhiiACOhtqESelDc6bTIhHluVcbMOznY8";
+
+var docCookies = {
+    getItem: function (cname) {
+        if (!cname) {
+            return null;
+        }
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+};
+
+var token = "?token=" + docCookies.getItem('access-token');
+
+$(document).ready(function(){
+    //if not an admin, can't access admin page
+    $.ajax({
+        url: 'http://localhost:8042/api/users/username?token=' + docCookies.getItem('access-token'),
+        type: 'POST',
+        data: JSON.stringify({"username": docCookies.getItem('username')}),
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
+        credentials: 'include',
+        success: function(result) {
+            console.log(result);
+            $('.user-name > p').text(result[0].username);
+            if (result[0].role !== "admin"){
+                alert("Must be and admin to access this page");
+                document.location.href = '../sign-up-login-form/login.html';
+            }
+        },
+        error: function () {
+            alert("Login as admin to access this page");
+            document.location.href = '../sign-up-login-form/login.html';
+        }
+    });
+
+    $('#logout').click(function (event) {
+        event.preventDefault();
+        document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+        document.location.href = '../sign-up-login-form/login.html';
+    });
+
+    var token = docCookies.getItem('access-token');
+    if (token){
+        $("#user-name").text(docCookies.getItem('username'));
+        $("#login").hide();
+        $("#register").hide();
+    }
+    else{
+        $("#user-name").text('Guest');
+        $("#logout").hide();
+        $("#user-name").hide();
+    }
+});
+
 function show(){
 		//window.location.href = "/admin/add-product.html";
 		$(".product-table").addClass("col-lg-6");
