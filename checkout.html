@@ -245,7 +245,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var order_id;
         var item = $(event.target).attr("class") + "";
         item = item.substring(7);
-        console.log(item);
         $('.cart-header').each(function () {
 			if ($(this).has('.' + item)){
 			    order_id = $('.cart-header-'+ item).find('#order_id').text();
@@ -260,9 +259,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     success: function(result) {
                         console.log(deleted);
                     },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        alert("Fail to delete your order");
-                    }
                 });
                 return false;
 			}
