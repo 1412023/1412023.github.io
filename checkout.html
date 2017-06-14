@@ -280,7 +280,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	
 	$(document).ready(function(){
-		$.get("http://localhost:8042/api/get_token", function(data, status){
+		$.get("https://thawing-forest-86527.herokuapp.com/api/get_token", function(data, status){
 		console.log(data);
 		braintree.client.create({
 		  authorization: data
@@ -328,7 +328,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		            // Submit `payload.nonce` to your server
 		            console.log(payload);
 		            $.ajax({
-				        url: 'http://localhost:8042/api/payment',
+				        url: 'https://thawing-forest-86527.herokuapp.com/api/payment',
 				        type: 'POST',
 				        data: JSON.stringify({
 		            		'paymentMethodNonce': payload.nonce,
