@@ -331,7 +331,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				        url: 'http://localhost:8042/api/payment',
 				        type: 'POST',
 				        data: JSON.stringify({
-		            		'nonce': payload.nonce,
+		            		'paymentMethodNonce': payload.nonce,
 		            		'amount': $("#amount").text()
 		            	}),
 				        dataType : "json",
